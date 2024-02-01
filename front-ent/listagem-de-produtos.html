@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Produtos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h4>Lista de produtos cadastrados</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome:</th>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th colspan="2" class="text-center w-25">Opções</th>
+                </tr>
+            </thead>
+            <tbody id="productList">
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Adicione um modal para o formulário de edição -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Seu formulário de edição vai aqui -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="edit-nome" placeholder="Nome">
+                        <label for="edit-nome">Nome</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="edit-codigo" placeholder="Código">
+                        <label for="edit-codigo">Código</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="edit-descricao" placeholder="Descrição">
+                        <label for="edit-descricao">Descrição</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="edit-preco" placeholder="Preço">
+                        <label for="edit-preco">Preço</label>
+                    </div>
+                    <!-- Adicione mais campos conforme necessário -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" onclick="atualizarProduto()">Salvar
+                        Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+       
+        function atualizarProduto() {
+            // Adicione a lógica para atualizar o produto usando a API aqui
+            // Você precisará dos dados do formulário de edição
+            // Feche o modal após a atualização bem-sucedida
+            var editModal = new bootstrap.Modal(document.getElementById('editModal'));
+            editModal.hide();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>

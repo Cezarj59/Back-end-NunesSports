@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edição de Produto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+  <input type="hidden" id="productId" name="productId">
+
+  
+  <div class="container">
+    <form id="productForm" class="form-horizontal">
+      <fieldset>
+        <!-- Form Name -->
+        <legend class="text-center">Editar de Produto</legend>
+
+        <div class="form-floating col-8 mx-auto mb-3">
+          <input type="text" class="form-control" id="nome" placeholder="Digite o nome do Produto...">
+          <label for="nome">Nome</label>
+        </div>
+
+        <div class="form-floating col-8 mx-auto mb-3">
+          <input type="text" class="form-control" id="codigo" placeholder="Digite o código do Produto...">
+          <label for="codigo">Código</label>
+        </div>
+
+        <div class="form-floating col-8 mx-auto mb-3">
+          <textarea class="form-control" placeholder="Leave a comment here" id="descricao" style="height: 100px"></textarea>
+          <label for="descricao">Descrição</label>
+        </div>
+
+        <div class="form-floating col-8 mx-auto">
+          <input type="number" class="form-control" id="preco" placeholder="Digite o preço do Produto...">
+          <label for="preco">Preço</label>
+        </div>
+       
+        <!-- Button -->
+        <div class="row mt-3">         
+          <div class="col-12 text-center">
+            <button id="singlebutton" name="singlebutton" class="btn btn-success col-8" onclick="submitForm()">Enviar</button>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+
+  <script>
+   function abrirFormularioEdicao(productId) {
+  // Fazer uma requisição GET para obter os detalhes do produto
+  fetch(`http://localhost:3001/products/${productId}`)
+    .then(response => response.json())
+    .then(product => {
+      // Preencher os campos do formulário com os detalhes atuais do produto
+      document.getElementById('productId').value = product._id;
+      document.getElementById('nome').value = product.nome;
+      document.getElementById('codigo').value = product.codigo;
+      document.getElementById('descricao').value = product.descricao;
+      document.getElementById('preco').value = product.preco;
+    })
+    .catch(error => {
+      console.error('Erro ao obter detalhes do produto para edição:', error);
+    });
+}
+
+
+function atualizarProduto() {
+  // Obtenha os dados do formulário de edição
+  const productId = document.getElementById('productId').value;
+  const nome = document.getElementById('nome').value;
+  const codigo = document.getElementById('codigo').value;
+  const descricao = document.getElementById('descricao').value;
+  const preco = document.getElementById('preco').value;
+
+  // Fazer uma requisição PUT para a API
+  fetch(`http://localhost:3001/products/atualizar/${productId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ nome, codigo, descricao, preco }),
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Erro ao atualizar produto: ${response.statusText}`);
+      }
+    })
+    .then(data => {
+      // Implemente o código para lidar com a resposta da API após a atualização
+      console.log('Resposta da API após a atualização:', data);
+
+      // Fechar o formulário de edição, se necessário
+    })
+    .catch(error => {
+      console.error('Erro ao atualizar produto:', error);
+    });
+}
+
+  </script>
+
+</body>
+</html>
