@@ -11,8 +11,29 @@
 
 <body>
 
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Nunes Sports</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./index.html">Cadastro de Produtos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./listagem-de-produtos.html">Produtos Cadastrados</a>
+            </li>            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
   <div class="container">
-    <form id="productForm" class="form-horizontal">
+    <form id="productForm" class="form-horizontal mt-5">
       <fieldset>
         <!-- Form Name -->
         <legend class="text-center">Cadastro de Produto</legend>
@@ -28,19 +49,21 @@
         </div>
 
         <div class="form-floating col-8 mx-auto mb-3">
-          <textarea class="form-control" placeholder="Leave a comment here" id="descricao" style="height: 100px"></textarea>
+          <textarea class="form-control" placeholder="Leave a comment here" id="descricao"
+            style="height: 100px"></textarea>
           <label for="descricao">Descrição</label>
         </div>
 
         <div class="form-floating col-8 mx-auto">
-          <input type="number" class="form-control" id="preco" placeholder="Digite o preço do Produto...">
+          <input type="text" class="form-control" id="preco" placeholder="Digite o preço do Produto...">
           <label for="preco">Preço</label>
         </div>
-       
+
         <!-- Button -->
-        <div class="row mt-3">         
+        <div class="row mt-3">
           <div class="col-12 text-center">
-            <button id="singlebutton" name="singlebutton" class="btn btn-success col-8" onclick="submitForm()">Enviar</button>
+            <button id="singlebutton" name="singlebutton" class="btn btn-success col-8"
+              onclick="submitForm()">Enviar</button>
           </div>
         </div>
 
@@ -82,6 +105,23 @@
     crossorigin="anonymous"></script>
   <script>
     function submitForm() {
+      const precoInput = document.getElementById('preco');
+      const precoValue = precoInput.value;
+
+      // Verificar se o valor é um número válido
+      if (!isNaN(precoValue)) {
+        // Continuar com o envio do formulário
+        // ...
+      } else {
+        // Exibir mensagem de erro ou realizar ações apropriadas
+        alert('Por favor, insira um valor de preço válido.');
+      }
+    }
+
+
+
+
+    function submitForm() {
       const nome = document.getElementById('nome').value;
       const codigo = document.getElementById('codigo').value;
       const descricao = document.getElementById('descricao').value;
@@ -93,32 +133,39 @@
         return;
       }
 
-      // Cria um objeto com os dados do produto
-      const productData = {
-        nome: nome,
-        codigo: codigo,
-        descricao: descricao,
-        preco: parseFloat(preco),
-      };
+      if (!isNaN(preco)) {
 
-      // Enviar os dados JSON para a sua API
-      fetch('http://localhost:3001/products/cadastrar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Resposta da API:', data);
-          console.log(productData);
-          alert(`Produto ${productData.nome} cadastrado com sucesso`);
-          // Aqui você pode lidar com a resposta da API
+        const productData = {
+          nome: nome,
+          codigo: codigo,
+          descricao: descricao,
+          preco: parseFloat(preco),
+        };
+
+        // Enviar os dados JSON para a sua API
+        fetch('http://localhost:3001/products/cadastrar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(productData),
         })
-        .catch(error => {
-          console.error('Erro ao enviar dados:', error);
-        });
+          .then(response => response.json())
+          .then(data => {
+            console.log('Resposta da API:', data);
+            console.log(productData);
+            alert(`Produto ${productData.nome} cadastrado com sucesso`);
+            // Aqui você pode lidar com a resposta da API
+          })
+          .catch(error => {
+            console.error('Erro ao enviar dados:', error);
+          });
+      } else {
+        // Exibir mensagem de erro ou realizar ações apropriadas
+        alert('Por favor, insira um valor de preço válido.');
+      }
+
+
     }
   </script>
 
