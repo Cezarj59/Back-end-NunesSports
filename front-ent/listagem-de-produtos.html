@@ -29,7 +29,7 @@
         </table>
     </div>
 
-    <!-- Adicione um modal para o formulário de edição -->
+    <!-- Modal para o formulário de edição -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -59,14 +59,37 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" onclick="atualizarProduto()">Salvar
+
+                    <button type="button" class="btn btn-primary" id="btnSalvarEdicao" onclick="editarProduto()">Salvar
                         Alterações</button>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Exclusão de Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza de que deseja excluir este produto?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDeletion()">Confirmar Exclusão</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-       
+
         function atualizarProduto() {
             // Adicione a lógica para atualizar o produto usando a API aqui
             // Você precisará dos dados do formulário de edição
