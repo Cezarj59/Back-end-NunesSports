@@ -56,10 +56,6 @@ locahost:
 [GET] http://localhost:3001/products/listar
 
 ```
-ou
-```
-[GET] https://nunes-sports-axl7.onrender.com/products/listar
-```
 
 - **Buscar Produto por ID:**
 
@@ -70,12 +66,6 @@ locahost:
 [GET] http://localhost:3001/products//buscar/:productId
 
 ```
-ou
-```
-[GET] https://nunes-sports-axl7.onrender.com/products/buscar/:productId
-
-```
-
 
 - **Cadastrar Produto:**
 
@@ -83,11 +73,6 @@ locahost:
 
 ```
 [POST] http://localhost:3001/products/cadastrar
-```
-ou
-
-```
-[POST] https://nunes-sports-axl7.onrender.com/products/cadastrar
 ```
 
 - **Atualização de Usuário:**
@@ -97,11 +82,6 @@ locahost:
 ```
 [PUT] http://localhost:3001/products/atualizar/:productId
 
-```
-ou
-
-```
-[PUT] https://nunes-sports-axl7.onrender.com/products/atualizar/:productId
 ```
 
 
@@ -113,24 +93,24 @@ Você pode utilizar o cURL para testar os endpoints diretamente do terminal ou l
 
 ### Cadastro de Produtos
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"nome":"Nome do Produto", "codigo":"12345", "descricao":"Descrição do Produto", "preco":99.99}' https://nunes-sports-axl7.onrender.com/products/cadastrar
+curl -X POST -H "Content-Type: application/json" -d '{"nome":"Nome do Produto", "codigo":"12345", "descricao":"Descrição do Produto", "preco":99.99}' http://localhost:3001/products/cadastrar
 ```
 ### Atualização de Produto (Exemplo com ID "seuProductId")
 ```bash
-curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Novo Nome", "codigo":"54321", "descricao":"Nova Descrição", "preco":129.99}' https://nunes-sports-axl7.onrender.com/products/atualizar/seuProductId
+curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Novo Nome", "codigo":"54321", "descricao":"Nova Descrição", "preco":129.99}' http://localhost:3001/products/atualizar/seuProductId
 
 ```
 ### Listar Todos os Produtos
 ```bash
-curl -X GET https://nunes-sports-axl7.onrender.com/products/listar
+curl -X GET http://localhost:3001/products/listar
 ```
 ### Busca de Produto por ID (Substitua 'seuProductId' pelo ID correto)
 ```bash
-curl -X GET https://nunes-sports-axl7.onrender.com/products/buscar/seuProductId
+curl -X GET http://localhost:3001/products/buscar/seuProductId
 ```
 ### Busca de Produto por ID (Substitua 'seuProductId' pelo ID correto)
 ```bash
-curl -X DELETE https://nunes-sports-axl7.onrender.com/products/deletar/seuProductId
+curl -X DELETE http://localhost:3001/products/deletar/seuProductId
 ```
 
 
