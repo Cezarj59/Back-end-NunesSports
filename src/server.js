@@ -13,6 +13,11 @@ const corsOptions = {
     credentials: true,
 };
 app.use(cors(corsOptions));
+// Middleware para definir o cabeçalho Permissions-Policy
+app.use((req, res, next) => {
+    res.setHeader('Permissions-Policy', 'interest-cohort=()');
+    next();
+});
 
 // Middleware para aceitar apenas dados JSON nas requisições
 app.use(express.json());
