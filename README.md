@@ -61,20 +61,26 @@ Este projeto consiste em uma API para a Nunes Sports, que oferece operações de
 [GET] http://localhost:3001/products//buscar/:productId
 
 ```
-http://localhost:3001/products
+
 - **Cadastrar Produto:**
 
 ```
 [POST] http://localhost:3001/products/cadastrar
 ```
 
-- **Atualização de Usuário:**
+- **Atualizar Produto:**
 
 ```
 [PUT] http://localhost:3001/products/atualizar/:productId
 
 ```
 
+- **Deletar Produto:**
+
+```
+[DELETE] http://localhost:3001/products/deletar/:productId
+
+```
 
 Certifique-se de que as tecnologias necessárias estejam configuradas no seu ambiente antes de utilizar os endpoints. Você pode usar ferramentas como o __`INSOMNIA`__, __`cURL`__ ou __`POSTMAN`__ para realizar as operações na API.
 
