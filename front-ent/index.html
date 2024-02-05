@@ -15,7 +15,8 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="#">Nunes Sports</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -25,7 +26,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./listagem-de-produtos.html">Produtos Cadastrados</a>
-            </li>            
+            </li>
           </ul>
         </div>
       </div>
@@ -62,7 +63,7 @@
         <!-- Button -->
         <div class="row mt-3">
           <div class="col-12 text-center">
-            <button id="singlebutton" name="singlebutton" class="btn btn-success col-8"
+            <button type="button" id="singlebutton" name="singlebutton" class="btn btn-success col-8"
               onclick="submitForm()">Enviar</button>
           </div>
         </div>
@@ -71,31 +72,23 @@
     </form>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- Modal Info -->
+<div class="modal fade" id="modal-info" tabindex="-1" aria-labelledby="modalInfoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="modalInfoLabel">Info</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p id="modal-mensagem"></p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+      </div>
+  </div>
+</div>
 
 
 
@@ -103,72 +96,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script>
-    function submitForm() {
-      const precoInput = document.getElementById('preco');
-      const precoValue = precoInput.value;
-
-      // Verificar se o valor é um número válido
-      if (!isNaN(precoValue)) {
-        // Continuar com o envio do formulário
-        // ...
-      } else {
-        // Exibir mensagem de erro ou realizar ações apropriadas
-        alert('Por favor, insira um valor de preço válido.');
-      }
-    }
-
-
-
-
-    function submitForm() {
-      const nome = document.getElementById('nome').value;
-      const codigo = document.getElementById('codigo').value;
-      const descricao = document.getElementById('descricao').value;
-      const preco = document.getElementById('preco').value;
-
-      // Verifica se todos os campos estão preenchidos
-      if (!nome || !codigo || !descricao || !preco) {
-        alert('Preencha todos os campos obrigatórios');
-        return;
-      }
-
-      if (!isNaN(preco)) {
-
-        const productData = {
-          nome: nome,
-          codigo: codigo,
-          descricao: descricao,
-          preco: parseFloat(preco),
-        };
-
-        // Enviar os dados JSON para a sua API
-        fetch('http://localhost:3001/products/cadastrar', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(productData),
-        })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Resposta da API:', data);
-            console.log(productData);
-            alert(`Produto ${productData.nome} cadastrado com sucesso`);
-            // Aqui você pode lidar com a resposta da API
-          })
-          .catch(error => {
-            console.error('Erro ao enviar dados:', error);
-          });
-      } else {
-        // Exibir mensagem de erro ou realizar ações apropriadas
-        alert('Por favor, insira um valor de preço válido.');
-      }
-
-
-    }
-  </script>
-
+    <script src="./js/subimit-form.js"></script>
 </body>
 
 </html>
