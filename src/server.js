@@ -7,7 +7,7 @@ const app = express();
 
 // Configurar o middleware CORS
 const corsOptions = {
-    origin: '*', // '*' para permitir de qualquer origem
+    origin: 'https://cezarj59.github.io', // '*' para permitir de qualquer origem
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     optionsSuccessStatus: 204,
     credentials: true,
