@@ -117,33 +117,28 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
   - **Input:**
     - Campos necessários para cadastro (ex: nome, código, descrição, preço)
 
-
-```json
-{
-  "nome": "Nome do Produto",
-  "codigo": "12345",
-  "descricao": "Descrição do Produto",
-  "preco": 99.99
-}
-
-
-```
+    ```json
+    {
+      "nome": "Nome do Produto",
+      "codigo": "12345",
+      "descricao": "Descrição do Produto",
+      "preco": 99.99
+    }
+    ```
       
-  - **Output (sucesso):**
-    - Retorno com informações do produto cadastrado
+    - **Output (sucesso):**
+      - Retorno com informações do produto cadastrado
+    ```json
+    {
+      "message": "Produto 'Nome do Produto' cadastrado com Sucesso!!!",
+      "id": "productId",
+      "data_criacao": "Data de Criação",
+      "data_atualizacao": "Data de Atualização"
+    }
+    ```
 
-```json
-{
-  "message": "Produto 'Nome do Produto' cadastrado com Sucesso!!!",
-  "id": "productId",
-  "data_criacao": "Data de Criação",
-  "data_atualizacao": "Data de Atualização"
-}
-
-```
-
-  - **Erro:**
-    - Internal Server Error
+    - **Erro:**
+      - Internal Server Error
 
 - ## <span style="font-size:larger;">Atualizar produto</span> 
   - **URL:** [https://nunes-sports-axl7.onrender.com/products/atualizar/:productId](https://nunes-sports-axl7.onrender.com/products/atualizar/:productId)
@@ -152,33 +147,29 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
     - `:productId` - ID do produto a ser atualizado
   - **Input:**
     - Campos a serem atualizados (ex: nome, código, descrição, preço) em formato JSON
-
    
- ```json
-{
-  "nome": "Novo Nome",
-  "codigo": "54321",
-  "descricao": "Nova Descrição",
-  "preco": 129.99
-}
+    ```json
+    {
+      "nome": "Novo Nome",
+      "codigo": "54321",
+      "descricao": "Nova Descrição",
+      "preco": 129.99
+    }
+    ```
+          
+      - **Output (sucesso):**
+        - Retorno com informações atualizadas do produto
+    ```json
+    {
+      "message": "Produto atualizado com sucesso",
+      "id": "productId",
+      "data_criacao": "Data de Criação",
+      "data_atualizacao": "Data de Atualização"
+    }
+    ```
 
-```
-      
-  - **Output (sucesso):**
-    - Retorno com informações atualizadas do produto
-
- ```json
-{
-  "message": "Produto atualizado com sucesso",
-  "id": "productId",
-  "data_criacao": "Data de Criação",
-  "data_atualizacao": "Data de Atualização"
-}
-
-```
-
-  - **Erros:**
-    - Internal Server Error
+      - **Erros:**
+        - Internal Server Error
 
 - ## <span style="font-size:larger;">Listar todos os Produtos</span>
   - **URL:** [https://nunes-sports-axl7.onrender.com/products/listar](https://nunes-sports-axl7.onrender.com/products/listar)
@@ -186,31 +177,30 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
   - **Output (sucesso):**
     - Retorno com todos os Produtos listados
       
-```json
- [
-  {
-    "nome": "Nome do Produto 1",
-    "codigo": "12345",
-    "descricao": "Descrição do Produto 1",
-    "preco": 99.99,
-    "data_criacao": "Data de Criação",
-    "data_atualizacao": "Data de Atualização"
-  },
-  {
-    "nome": "Nome do Produto 2",
-    "codigo": "67890",
-    "descricao": "Descrição do Produto 2",
-    "preco": 149.99,
-    "data_criacao": "Data de Criação",
-    "data_atualizacao": "Data de Atualização"
-  }
-  // ...
-]
-
-```
-      
-  - **Erros:**
-    - - Internal Server Error
+    ```json
+    [
+      {
+        "nome": "Nome do Produto 1",
+        "codigo": "12345",
+        "descricao": "Descrição do Produto 1",
+        "preco": 99.99,
+        "data_criacao": "Data de Criação",
+        "data_atualizacao": "Data de Atualização"
+      },
+      {
+        "nome": "Nome do Produto 2",
+        "codigo": "67890",
+        "descricao": "Descrição do Produto 2",
+        "preco": 149.99,
+        "data_criacao": "Data de Criação",
+        "data_atualizacao": "Data de Atualização"
+      }
+      // ...
+    ]
+    ```
+          
+      - **Erros:**
+        - - Internal Server Error
 
 - ## <span style="font-size:larger;">Busca de Produto por ID</span>  
   - **URL:** [https://nunes-sports-axl7.onrender.com/products/buscar/:productId](https://nunes-sports-axl7.onrender.com/products/buscar/:productId)
@@ -222,38 +212,38 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
   - **Output (sucesso):**
     - Retorno com as informações do produto
     
-```json
-{
-  "nome": "Nome do Produto",
-  "codigo": "12345",
-  "descricao": "Descrição do Produto",
-  "preco": 99.99,
-  "data_criacao": "Data de Criação",
-  "data_atualizacao": "Data de Atualização"
-}
-```      
-  - **Erros:**
-    - Produto não encontrado
-    - Internal Server Error
+    ```json
+    {
+      "nome": "Nome do Produto",
+      "codigo": "12345",
+      "descricao": "Descrição do Produto",
+      "preco": 99.99,
+      "data_criacao": "Data de Criação",
+      "data_atualizacao": "Data de Atualização"
+    }
+    ```      
+      - **Erros:**
+        - Produto não encontrado
+        - Internal Server Error
 
-- ## <span style="font-size:larger;">Deleção de Produto por ID</span>
-  - **URL:** [https://nunes-sports-axl7.onrender.com/products/deletar/:productId](https://nunes-sports-axl7.onrender.com/products/deletar/:productId)
-  - **Método:** DELETE 
-  - **URL Params:**
-    - `:productId` - ID do Produto a ser deletado
+    - ## <span style="font-size:larger;">Deleção de Produto por ID</span>
+      - **URL:** [https://nunes-sports-axl7.onrender.com/products/deletar/:productId](https://nunes-sports-axl7.onrender.com/products/deletar/:productId)
+      - **Método:** DELETE 
+      - **URL Params:**
+        - `:productId` - ID do Produto a ser deletado
+          
+      - **Output (sucesso):**
+        - Retorno com mensagem de sucesso
+        
+    ```json
+    {
+      "message": "Produto deletado com sucesso!!!"
+    }
+    ```    
       
-  - **Output (sucesso):**
-    - Retorno com mensagem de sucesso
-    
-```json
-{
-  "message": "Produto deletado com sucesso!!!"
-}
-
-```      
-  - **Erros:**
-    - Produto não encontrado
-    - Internal Server Error
+      - **Erros:**
+        - Produto não encontrado
+        - Internal Server Error
 
 ## Estrutura do Projeto
 
