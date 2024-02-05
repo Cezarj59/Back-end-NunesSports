@@ -63,6 +63,7 @@ router.post('/cadastrar', async (req, res) => {
     await product.save();
 
     return res.json({
+      message: `Produto '${product.nome}' cadastrado com Sucesso!!!`,
       id: product._id,
       data_criacao: exibirDataNoFusoHorarioLocal(product.data_criacao),
       data_atualizacao: exibirDataNoFusoHorarioLocal(product.data_atualizacao),
@@ -118,7 +119,7 @@ router.delete('/deletar/:productId', async (req, res) => {
       return res.status(404).json({ message: 'Produto não encontrado' });
     }
 
-    return res.json({ message: 'Produto deletado com sucesso' });
+    return res.json({ message: 'Produto deletado com sucesso!!!' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: true, message: 'Internal Server Error' });
