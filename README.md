@@ -1,31 +1,30 @@
-# API Restful em Node.js com Express e MongoDB Atlas.
+# API Restful CRUD Nunes Sports
 
 ![Node.js](https://img.shields.io/badge/Node.js-LTS-brightgreen)
 ![Express](https://img.shields.io/badge/Express-4.17.1-blue)
-![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
 ![Mongoose](https://img.shields.io/badge/Mongoose-ODM%20for%20MongoDB-yellow)
 ![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-Cloud%20Database-brightgreen)
 ![Render](https://img.shields.io/badge/Render-Hosting-lightgrey)
 ![Insomnia](https://img.shields.io/badge/Insomnia-API%20Testing-success)
 
+
 ## Visão Geral
 
-Este projeto é uma API RESTful desenvolvida em Node.js utilizando o framework Express. A API oferece operações de cadastro (sign up), autenticação (sign in), recuperação de informações do usuário e busca de usuário autenticado. Utiliza JSON como formato de comunicação, JWT para autenticação e MongoDB Atlas como banco de dados na nuvem e Mongoose utilizado para mapeamento de dados.
+Este projeto consiste em uma API para a Nunes Sports, que oferece operações de CRUD (Create, Read, Update, Delete) para produtos da loja. A solução inclui uma base de dados MongoDB com uma tabela de produtos, contendo campos como Nome, Código, Descrição e Preço. Além disso, uma interface web foi desenvolvida para permitir que usuários visualizem, criem, editem e excluam produtos, refletindo todas as ações no banco de dados.
 
-## Objetivos
 
-- Desenvolvimento de uma API RESTful em Node.js com Express
-- Implementação de operações de cadastro, autenticação, recuperação de informações e busca de usuário autenticado
-- Utilização de JSON como formato de comunicação
-- Autenticação com JWT (JSON Web Tokens)
-- Criptografia hash na senha e token para maior segurança
-- Banco de dados MongoDB Atlas na nuvem
+1. Base de dados com uma tabela 'produtos' com os campos:
+   - Nome do produto
+   - Código do produto
+   - Descrição do produto
+   - Preço do produto
+   - Utilização de JSON como formato de comunicação
+   - Banco de dados MongoDB Atlas na nuvem
 
 ## Tecnologias Utilizadas
 
 - Node.js (LTS)
 - Express 4.17.1
-- JWT para autenticação
 - Mongoose (Object Data Modeling para MongoDB)
 - MongoDB Atlas para armazenamento de dados
 - Render para hospedagem
@@ -43,49 +42,52 @@ Este projeto é uma API RESTful desenvolvida em Node.js utilizando o framework E
    npm start
    # ou
    node src/server.js
-   ```
+
 
 
 4. Utilize os seguintes endpoints para realizar operações na API:
  
 
-- **Cadastro de Usuário:**
+- **Listar Todos os Produtos:**
 
 locahost:
 
 ```
-[POST] https://localhost:3001/auth/cadastro
+[GET] http://localhost:3001/products/listar
+
 ```
 ou
 ```
-[POST] https://api-escribo-x2y3.onrender.com/auth/cadastro
+[GET] https://nunes-sports-axl7.onrender.com/products/listar
 ```
 
-- **Autenticação de Usuário:**
+- **Buscar Produto por ID:**
 
 locahost:
 
 
 ```
-[POST] https://localhost:3001/auth/login
+[GET] http://localhost:3001/products//buscar/:productId
+
 ```
 ou
 ```
-[POST] https://api-escribo-x2y3.onrender.com/auth/login
-```
--Nota: A busca de usuários autenticados requer autenticação via Bearer Token. Certifique-se de incluir na sua requisição: Bearer TOKEN.
+[GET] https://nunes-sports-axl7.onrender.com/products/buscar/:productId
 
-- **Busca de Usuários Autenticados:**
+```
+
+
+- **Cadastrar Produto:**
 
 locahost:
 
 ```
-[GET] https://localhost:3001/admin/users
+[POST] http://localhost:3001/products/cadastrar
 ```
 ou
 
 ```
-[GET] https://api-escribo-x2y3.onrender.com/admin/users
+[POST] https://nunes-sports-axl7.onrender.com/products/cadastrar
 ```
 
 - **Atualização de Usuário:**
@@ -93,12 +95,13 @@ ou
 locahost:
 
 ```
-[PUT] https://localhost:3001/auth/users/:id
+[PUT] http://localhost:3001/products/atualizar/:productId
+
 ```
 ou
 
 ```
-[PUT] https://api-escribo-x2y3.onrender.com/auth/users/:id
+[PUT] https://nunes-sports-axl7.onrender.com/products/atualizar/:productId
 ```
 
 
@@ -108,66 +111,69 @@ Certifique-se de que as tecnologias necessárias estejam configuradas no seu amb
 
 Você pode utilizar o cURL para testar os endpoints diretamente do terminal ou linha de comando. Abaixo estão alguns exemplos básicos:
 
-### Cadastro de Usuário
+### Cadastro de Produtos
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"nome":"SeuNome", "email":"seuemail@example.com", "senha":"suasenha", "telefone":{"numero":"seunumero", "ddd":"seuddd"}}' https://api-escribo-x2y3.onrender.com/auth/cadastro
+curl -X POST -H "Content-Type: application/json" -d '{"nome":"Nome do Produto", "codigo":"12345", "descricao":"Descrição do Produto", "preco":99.99}' https://nunes-sports-axl7.onrender.com/products/cadastrar
 ```
-### Login
+### Atualização de Produto (Exemplo com ID "seuProductId")
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"email":"seuemail@example.com", "senha":"suasenha"}' https://api-escribo-x2y3.onrender.com/auth/login
+curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Novo Nome", "codigo":"54321", "descricao":"Nova Descrição", "preco":129.99}' https://nunes-sports-axl7.onrender.com/products/atualizar/seuProductId
 
 ```
-### Busca de Usuários Autenticados
+### Listar Todos os Produtos
 ```bash
-curl -X GET -H "Authorization: Bearer TOKEN_AQUI" https://api-escribo-x2y3.onrender.com/admin/users
+curl -X GET https://nunes-sports-axl7.onrender.com/products/listar
+```
+### Busca de Produto por ID (Substitua 'seuProductId' pelo ID correto)
+```bash
+curl -X GET https://nunes-sports-axl7.onrender.com/products/buscar/seuProductId
+```
+### Busca de Produto por ID (Substitua 'seuProductId' pelo ID correto)
+```bash
+curl -X DELETE https://nunes-sports-axl7.onrender.com/products/deletar/seuProductId
+```
 
-```
-### Atualização de Usuário (Exemplo com ID "seuid")
-```bash
-curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer TOKEN_AQUI" -d '{"nome":"NovoNome", "email":"novoemail@example.com", "telefone":{"numero":"novonumero", "ddd":"novoddd"}}' https://api-escribo-x2y3.onrender.com/auth/users/seuid
-```
 
 # Endpoints
 
 A seguir estão os endpoints disponíveis do projeto hospedado:
 
-- ## <span style="font-size:larger;">Cadastro de Usuário</span>
-  - **URL:** [https://api-escribo-x2y3.onrender.com/auth/cadastro](https://api-escribo-x2y3.onrender.com/auth/cadastro)
+- ## <span style="font-size:larger;">Cadastro de Produto</span>  
+  - **URL:** [https://](https://)
   - **Método:** POST
   - **Input:**
-    - Campos necessários para cadastro (ex: nome, email, senha, telefone{numero,ddd})
+    - Campos necessários para cadastro (ex: nome, código, descrição, preço)
 
 
 ```json
 {
-  "nome": "string",
-  "email": "string",
-  "senha": "senha",
-  "telefone": {
-    "numero": "123456789",
-    "ddd": "11"
-  }
+  "nome": "Nome do Produto",
+  "codigo": "12345",
+  "descricao": "Descrição do Produto",
+  "preco": 99.99
 }
+
+
 ```
       
   - **Output (sucesso):**
-    - Retorno com informações do usuário cadastrado
+    - Retorno com informações do produto cadastrado
 
 ```json
 {
-  "id": "GUID/ID",
-  "data_criacao": "data",
-  "data_atualizacao": "data",
-  "ultimo_login": "data",
-  "token": "GUID/JWT"
+  "message": "Produto 'Nome do Produto' cadastrado com Sucesso!!!",
+  "id": "seuProductId",
+  "data_criacao": "Data de Criação",
+  "data_atualizacao": "Data de Atualização"
 }
+
 ```
 
   - **Erro:**
-    - E-mail já cadastrado: `{ "mensagem": "E-mail já existente" }`
+    - Mensagem de erro em caso de falha
 
-- ## <span style="font-size:larger;">Login de Usuário</span>
-  - **URL:** [https://api-escribo-x2y3.onrender.com/auth/login](https://api-escribo-x2y3.onrender.com/auth/login)
+- ## <span style="font-size:larger;">Login de Usuário</span> 
+  - **URL:** [https://](https://)
   - **Método:** POST
   - **Input:**
     - E-mail e senha do usuário
@@ -175,83 +181,108 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
    
  ```json
 {
-  "email": "string",
-  "senha": "senha"
+  "nome": "Novo Nome",
+  "codigo": "54321",
+  "descricao": "Nova Descrição",
+  "preco": 129.99
 }
+
 ```
       
   - **Output (sucesso):**
-    - Retorno com token de autenticação
-
-   ```json
+    - Retorno com informações atualizadas do produto
+ ```json
 {
-  "id": "GUID/ID",
-  "data_criacao": "data",
-  "data_atualizacao": "data",
-  "ultimo_login": "data_atualizada",
-  "token": "GUID/JWT"
+  "message": "Produto atualizado com sucesso",
+  "id": "seuProductId",
+  "data_criacao": "Data de Criação",
+  "data_atualizacao": "Data de Atualização"
 }
+
+
 ```
 
   - **Erros:**
-    - E-mail não cadastrado ou senha incorreta: `{ "mensagem": "Usuário e/ou senha inválidos" }`
-    - Senha incorreta: Status 401 com `{ "mensagem": "Usuário e/ou senha inválidos" }`
+    - Mensagem de erro em caso de falha
 
-- ## <span style="font-size:larger;">Buscar Usuários (Admin)</span>
-  - **URL:** [https://api-escribo-x2y3.onrender.com/admin/users](https://api-escribo-x2y3.onrender.com/admin/users)
+- ## <span style="font-size:larger;">Busca de Todos os Produtos</span>
+  - **URL:** [https://](https://)
   - **Método:** GET
   - **Requisição:** Header Authentication com valor "Bearer {token}"
   - **Output (sucesso):**
     - Retorno com informações dos usuários
       
 ```json
-   {
-      "id": "6563873da187f9f7405a7026",
-      "nome": "string",
-      "email": "string",
-      "iat": 1701021502,
-      "exp": 1701023302
-    }
+   [
+  {
+    "nome": "Nome do Produto 1",
+    "codigo": "12345",
+    "descricao": "Descrição do Produto 1",
+    "preco": 99.99,
+    "data_criacao": "Data de Criação",
+    "data_atualizacao": "Data de Atualização"
+  },
+  {
+    "nome": "Nome do Produto 2",
+    "codigo": "67890",
+    "descricao": "Descrição do Produto 2",
+    "preco": 149.99,
+    "data_criacao": "Data de Criação",
+    "data_atualizacao": "Data de Atualização"
+  }
+  // ...
+]
+
 ```
       
   - **Erros:**
-    - Token inválido: `{ "mensagem": "Não autorizado" }`
-    - Token expirado (mais de 30 minutos): `{ "mensagem": "Sessão inválida" }`
+    - Mensagem de erro em caso de falha
 
-- ## <span style="font-size:larger;">Atualizar Usuário</span>
-  - **URL:** [https://api-escribo-x2y3.onrender.com/auth/users/:id](https://api-escribo-x2y3.onrender.com/auth/users/:id)
+- ## <span style="font-size:larger;">Busca de Produto por ID</span>  
+  - **URL:** [https://](https://)
   - **Método:** PUT
   - **URL Params:**
     - `:id` - ID do usuário a ser atualizado
   - **Input:**
     - Campos a serem atualizados (ex: nome, email, telefone) em formato JSON
 
-```json
-{
-  "nome": "Novo Nome",
-  "email": "novoemail@example.com",
-  "telefone": {
-    "numero": "987654321",
-    "ddd": "11"
-  }
-}
-```
       
   - **Output (sucesso):**
-    - Retorno com informações atualizadas do usuário
+    - Retorno com as informações do produto
+    
 ```json
-   {
-  "mensagem": "Usuário atualizado com sucesso",
-  "id": "ID",
-  "data_criacao": "Data",
-  "data_atualizacao": "Data_atualizada",
-  "ultimo_login": "Data",
-  "token": "Token"
+{
+  "nome": "Nome do Produto",
+  "codigo": "12345",
+  "descricao": "Descrição do Produto",
+  "preco": 99.99,
+  "data_criacao": "Data de Criação",
+  "data_atualizacao": "Data de Atualização"
 }
 ```      
   - **Erros:**
-    - Email já Cadastrado: `{ "mensagem": "E-mail já existente" }`
+    - Mensagem de erro em caso de falha
 
+- ## <span style="font-size:larger;">Deleção de Produto por ID</span>
+  - **URL:** [https://](https://)
+  - **Método:** PUT
+  - **URL Params:**
+    - `:id` - ID do usuário a ser atualizado
+  - **Input:**
+    - Campos a serem atualizados (ex: nome, email, telefone) em formato JSON
+
+      
+  - **Output (sucesso):**
+    - Retorno com mensagem de sucesso
+    
+```json
+{
+  "message": "Produto deletado com sucesso!!!"
+}
+
+```      
+  - **Erros:**
+    - Mensagem de erro em caso de falha
 ## Estrutura do Projeto
 
 A estrutura deste projeto segue a organização abaixo:
