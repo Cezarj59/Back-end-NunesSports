@@ -23,37 +23,62 @@ fetch('http://localhost:3001/products/listar')
     });
 
 
-
-    
-
+// -------------------- Excluir Produto ---------------------------
 function excluirProduto(productId) {
-    // Fazer uma requisição DELETE para a API
+    exibirModalConfirmacao(() => {
+        fazerRequisicaoExclusao(productId);
+    });
+}
+
+function exibirModalConfirmacao(confirmCallback) {
+    const confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+    confirmDeleteModal.show();
+
+    const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+    confirmDeleteButton.onclick = function () {
+        confirmCallback();
+        confirmDeleteModal.hide();
+    };
+}
+
+function fazerRequisicaoExclusao(productId) {
     fetch(`http://localhost:3001/products/deletar/${productId}`, {
         method: 'DELETE',
     })
         .then(response => {
             if (response.ok) {
-                return response.json(); // Retornar a resposta da API como JSON
+                return response.json();
             } else {
                 throw new Error(`Erro ao excluir produto: ${response.statusText}`);
             }
         })
         .then(data => {
-            // Exibir a mensagem da API em um alerta
-            alert(data.message);
-
-            // Atualizar a interface removendo o produto excluído
-            const rowToDelete = document.getElementById(`productRow_${productId}`);
-            if (rowToDelete) {
-                rowToDelete.remove();
-            }
+            handleRespostaExclusao(data, productId);
         })
         .catch(error => {
-            console.error(error.message);
+            handleErroExclusao(error);
         });
 }
 
+function handleRespostaExclusao(data, productId) {
+    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+    const msgElement = document.getElementById("modal-mensagem");
+    msgElement.innerHTML = data.message ? data.message : 'Mensagem não definida';
+    successModal.show();
 
+    const rowToDelete = document.getElementById(`productRow_${productId}`);
+    if (rowToDelete) {
+        rowToDelete.remove();
+    }
+}
+
+function handleErroExclusao(error) {
+    console.error(error.message);
+}
+
+
+// --------------------------- Editar Produto ---------------------------
+var editModal = new bootstrap.Modal(document.getElementById('editModal'));
 
 
 function abrirFormularioEdicao(productId) {
@@ -71,8 +96,7 @@ function abrirFormularioEdicao(productId) {
             // Defina o productId como um atributo do botão de salvar
             document.getElementById('btnSalvarEdicao').dataset.productId = productId;
 
-            // Abra o modal de edição
-            var editModal = new bootstrap.Modal(document.getElementById('editModal'));
+
             editModal.show();
         })
         .catch(error => {
@@ -81,23 +105,27 @@ function abrirFormularioEdicao(productId) {
 }
 
 function editarProduto() {
-    // Obter o productId do botão de salvar
     const productId = document.getElementById('btnSalvarEdicao').dataset.productId;
+    const dadosProduto = obterDadosProduto();
 
-    const nome = document.getElementById('edit-nome').value;
+    enviarRequisicaoAPI(productId, dadosProduto);
+}
+
+function obterDadosProduto() {
+    const nome = capitalizeFirstLetter(document.getElementById('edit-nome').value);
     const codigo = document.getElementById('edit-codigo').value;
-    const descricao = document.getElementById('edit-descricao').value;
+    const descricao = capitalizeFirstLetter(document.getElementById('edit-descricao').value);
     const preco = document.getElementById('edit-preco').value;
 
-    // Construa o objeto com os dados a serem enviados para a API
-    const dadosProduto = {
+    return {
         nome: nome,
         codigo: codigo,
         descricao: descricao,
         preco: preco,
     };
+}
 
-    // Fazer uma requisição PUT para a API para editar o produto
+function enviarRequisicaoAPI(productId, dadosProduto) {
     fetch(`http://localhost:3001/products/atualizar/${productId}`, {
         method: 'PUT',
         headers: {
@@ -107,20 +135,32 @@ function editarProduto() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('Resposta da API:', data);
-            
-            // Exibir a mensagem da API no alerta
-            const mensagem = data.message ? data.message : 'Mensagem não definida';
-            alert(mensagem);
-            
-            // Fechar o modal após a edição
-            const editModal = new bootstrap.Modal(document.getElementById('editModal'));
-            editModal.hide();
-            
-            // Recarregar a página para obter a lista atualizada de produtos
-            location.reload();
+            handleRespostaAPI(data);
         })
         .catch(error => {
-            console.error('Erro ao editar produto:', error);
+            handleErroAPI(error);
         });
+}
+
+function handleRespostaAPI(data) {
+    editModal.hide();
+    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+    const msgElement = document.getElementById("modal-mensagem");
+    msgElement.innerHTML = data.message ? data.message : 'Mensagem não definida';
+
+    successModal.show();
+
+    const okButton = document.getElementById('ok-button');
+    okButton.addEventListener('click', function () {
+        location.reload();
+    });
+}
+
+function handleErroAPI(error) {
+    console.error('Erro ao editar produto:', error);
+}
+
+
+function capitalizeFirstLetter(inputString) {
+    return inputString.charAt(0).toUpperCase() + inputString.slice(1).toLowerCase();
 }
