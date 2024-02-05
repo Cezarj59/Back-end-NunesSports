@@ -50,17 +50,12 @@ Este projeto consiste em uma API para a Nunes Sports, que oferece operações de
 
 - **Listar Todos os Produtos:**
 
-locahost:
-
 ```
 [GET] http://localhost:3001/products/listar
 
 ```
 
 - **Buscar Produto por ID:**
-
-locahost:
-
 
 ```
 [GET] http://localhost:3001/products//buscar/:productId
@@ -69,15 +64,11 @@ locahost:
 
 - **Cadastrar Produto:**
 
-locahost:
-
 ```
 [POST] http://localhost:3001/products/cadastrar
 ```
 
 - **Atualização de Usuário:**
-
-locahost:
 
 ```
 [PUT] http://localhost:3001/products/atualizar/:productId
