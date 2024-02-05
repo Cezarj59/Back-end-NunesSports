@@ -61,7 +61,7 @@ Este projeto consiste em uma API para a Nunes Sports, que oferece operações de
 [GET] http://localhost:3001/products//buscar/:productId
 
 ```
-
+http://localhost:3001/products
 - **Cadastrar Produto:**
 
 ```
@@ -86,22 +86,22 @@ Você pode utilizar o cURL para testar os endpoints diretamente do terminal ou l
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"nome":"Nome do Produto", "codigo":"12345", "descricao":"Descrição do Produto", "preco":99.99}' http://localhost:3001/products/cadastrar
 ```
-### Atualização de Produto (Exemplo com ID "seuProductId")
+### Atualização de Produto (Exemplo com ID "productId")
 ```bash
-curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Novo Nome", "codigo":"54321", "descricao":"Nova Descrição", "preco":129.99}' http://localhost:3001/products/atualizar/seuProductId
+curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Novo Nome", "codigo":"54321", "descricao":"Nova Descrição", "preco":129.99}' http://localhost:3001/products/atualizar/:productId
 
 ```
 ### Listar Todos os Produtos
 ```bash
 curl -X GET http://localhost:3001/products/listar
 ```
-### Busca de Produto por ID (Substitua 'seuProductId' pelo ID correto)
+### Busca de Produto por ID (Substitua 'productId' pelo ID correto)
 ```bash
-curl -X GET http://localhost:3001/products/buscar/seuProductId
+curl -X GET http://localhost:3001/products/buscar/:productId
 ```
-### Busca de Produto por ID (Substitua 'seuProductId' pelo ID correto)
+### Busca de Produto por ID (Substitua 'productId' pelo ID correto)
 ```bash
-curl -X DELETE http://localhost:3001/products/deletar/seuProductId
+curl -X DELETE http://localhost:3001/products/deletar/:productId
 ```
 
 
@@ -133,7 +133,7 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
 ```json
 {
   "message": "Produto 'Nome do Produto' cadastrado com Sucesso!!!",
-  "id": "seuProductId",
+  "id": "productId",
   "data_criacao": "Data de Criação",
   "data_atualizacao": "Data de Atualização"
 }
@@ -144,7 +144,7 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
     - Internal Server Error
 
 - ## <span style="font-size:larger;">Atualizar produto</span> 
-  - **URL:** [https://nunes-sports-axl7.onrender.com/products/atualizar/seuProductId](https://nunes-sports-axl7.onrender.com/products/atualizar/:ProductId)
+  - **URL:** [https://nunes-sports-axl7.onrender.com/products/atualizar/:productId](https://nunes-sports-axl7.onrender.com/products/atualizar/:productId)
   - **Método:** PUT
   - **URL Params:**
     - `:productId` - ID do produto a ser atualizado
@@ -168,7 +168,7 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
  ```json
 {
   "message": "Produto atualizado com sucesso",
-  "id": "seuProductId",
+  "id": "productId",
   "data_criacao": "Data de Criação",
   "data_atualizacao": "Data de Atualização"
 }
@@ -235,10 +235,10 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
     - Internal Server Error
 
 - ## <span style="font-size:larger;">Deleção de Produto por ID</span>
-  - **URL:** [https://nunes-sports-axl7.onrender.com/products/deletar/seuProductId](https://nunes-sports-axl7.onrender.com/products/deletar/seuProductId)
+  - **URL:** [https://nunes-sports-axl7.onrender.com/products/deletar/:productId](https://nunes-sports-axl7.onrender.com/products/deletar/:productId)
   - **Método:** DELETE 
   - **URL Params:**
-    - `:id` - ID do Produto a ser deletado
+    - `:productId` - ID do Produto a ser deletado
       
   - **Output (sucesso):**
     - Retorno com mensagem de sucesso
