@@ -66,13 +66,13 @@ Este projeto consiste em uma API para a Nunes Sports, que oferece operações de
   [POST] http://localhost:3001/products/cadastrar
   ```
 
-- **Atualizar Produto:**
+- **Atualizar Produto por ID:**
 
   ```
   [PUT] http://localhost:3001/products/atualizar/:productId
   ```
 
-- **Deletar Produto:**
+- **Deletar Produto por ID:**
 
   ```
   [DELETE] http://localhost:3001/products/deletar/:productId
