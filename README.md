@@ -1,4 +1,4 @@
-# API Restful CRUD Nunes Sports
+# Back end - API Restful CRUD Nunes Sports
 
 ![Node.js](https://img.shields.io/badge/Node.js-LTS-brightgreen)
 ![Express](https://img.shields.io/badge/Express-4.17.1-blue)
@@ -139,7 +139,7 @@ curl -X DELETE https://nunes-sports-axl7.onrender.com/products/deletar/seuProduc
 A seguir estão os endpoints disponíveis do projeto hospedado:
 
 - ## <span style="font-size:larger;">Cadastro de Produto</span>  
-  - **URL:** [https://](https://)
+  - **URL:** [https://nunes-sports-axl7.onrender.com/products/cadastrar](https://nunes-sports-axl7.onrender.com/products/cadastrar)
   - **Método:** POST
   - **Input:**
     - Campos necessários para cadastro (ex: nome, código, descrição, preço)
@@ -170,13 +170,15 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
 ```
 
   - **Erro:**
-    - Mensagem de erro em caso de falha
+    - Internal Server Error
 
-- ## <span style="font-size:larger;">Login de Usuário</span> 
-  - **URL:** [https://](https://)
-  - **Método:** POST
+- ## <span style="font-size:larger;">Atualizar produto</span> 
+  - **URL:** [https://nunes-sports-axl7.onrender.com/products/atualizar/seuProductId](https://nunes-sports-axl7.onrender.com/products/atualizar/:ProductId)
+  - **Método:** PUT
+  - **URL Params:**
+    - `:productId` - ID do produto a ser atualizado
   - **Input:**
-    - E-mail e senha do usuário
+    - Campos a serem atualizados (ex: nome, código, descrição, preço) em formato JSON
 
    
  ```json
@@ -191,6 +193,7 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
       
   - **Output (sucesso):**
     - Retorno com informações atualizadas do produto
+
  ```json
 {
   "message": "Produto atualizado com sucesso",
@@ -199,21 +202,19 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
   "data_atualizacao": "Data de Atualização"
 }
 
-
 ```
 
   - **Erros:**
-    - Mensagem de erro em caso de falha
+    - Internal Server Error
 
-- ## <span style="font-size:larger;">Busca de Todos os Produtos</span>
-  - **URL:** [https://](https://)
+- ## <span style="font-size:larger;">Listar todos os Produtos</span>
+  - **URL:** [https://nunes-sports-axl7.onrender.com/products/listar](https://nunes-sports-axl7.onrender.com/products/listar)
   - **Método:** GET
-  - **Requisição:** Header Authentication com valor "Bearer {token}"
   - **Output (sucesso):**
-    - Retorno com informações dos usuários
+    - Retorno com todos os Produtos listados
       
 ```json
-   [
+ [
   {
     "nome": "Nome do Produto 1",
     "codigo": "12345",
@@ -236,16 +237,14 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
 ```
       
   - **Erros:**
-    - Mensagem de erro em caso de falha
+    - - Internal Server Error
 
 - ## <span style="font-size:larger;">Busca de Produto por ID</span>  
-  - **URL:** [https://](https://)
+  - **URL:** [https://nunes-sports-axl7.onrender.com/products/buscar/:productId](https://nunes-sports-axl7.onrender.com/products/buscar/:productId)
   - **Método:** PUT
   - **URL Params:**
-    - `:id` - ID do usuário a ser atualizado
-  - **Input:**
-    - Campos a serem atualizados (ex: nome, email, telefone) em formato JSON
-
+    - `:productId` - ID do produto  
+ 
       
   - **Output (sucesso):**
     - Retorno com as informações do produto
@@ -261,16 +260,14 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
 }
 ```      
   - **Erros:**
-    - Mensagem de erro em caso de falha
+    - Produto não encontrado
+    - Internal Server Error
 
 - ## <span style="font-size:larger;">Deleção de Produto por ID</span>
-  - **URL:** [https://](https://)
-  - **Método:** PUT
+  - **URL:** [https://nunes-sports-axl7.onrender.com/products/deletar/seuProductId](https://nunes-sports-axl7.onrender.com/products/deletar/seuProductId)
+  - **Método:** DELETE 
   - **URL Params:**
-    - `:id` - ID do usuário a ser atualizado
-  - **Input:**
-    - Campos a serem atualizados (ex: nome, email, telefone) em formato JSON
-
+    - `:id` - ID do Produto a ser deletado
       
   - **Output (sucesso):**
     - Retorno com mensagem de sucesso
@@ -282,7 +279,9 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
 
 ```      
   - **Erros:**
-    - Mensagem de erro em caso de falha
+    - Produto não encontrado
+    - Internal Server Error
+
 ## Estrutura do Projeto
 
 A estrutura deste projeto segue a organização abaixo:
@@ -294,7 +293,6 @@ A estrutura deste projeto segue a organização abaixo:
 - `middlewares`: Contém middlewares utilizados na aplicação.
 - `models`: Guarda os modelos de dados utilizados na aplicação.
 - `server.js`: Ponto de entrada da aplicação, contendo as configurações e definição das rotas da API.
-- 
 
 
 ## Sistema de Build com Gerenciamento de Dependências
