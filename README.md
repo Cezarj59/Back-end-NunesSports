@@ -101,7 +101,7 @@ curl -X GET http://localhost:3001/products/listar
 ```bash
 curl -X GET http://localhost:3001/products/buscar/:productId
 ```
-### Busca de Produto por ID (Substitua 'productId' pelo ID do Produto)
+### Deletar Produto por ID (Substitua 'productId' pelo ID do Produto)
 ```bash
 curl -X DELETE http://localhost:3001/products/deletar/:productId
 ```
