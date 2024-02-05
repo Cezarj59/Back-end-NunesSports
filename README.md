@@ -5,7 +5,7 @@
 ![Mongoose](https://img.shields.io/badge/Mongoose-ODM%20for%20MongoDB-yellow)
 ![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-Cloud%20Database-brightgreen)
 ![Render](https://img.shields.io/badge/Render-Hosting-lightgrey)
-![Insomnia](https://img.shields.io/badge/Insomnia-API%20Testing-success)
+![Insomnia](https://img.shields.io/badge/Insomnia-API%20Testing-purple)
 
 
 ## Visão Geral
