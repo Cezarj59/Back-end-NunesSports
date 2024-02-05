@@ -226,7 +226,7 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
         - Produto não encontrado
         - Internal Server Error
 
-- ## <span style="font-size:larger;">Deleção de Produto por ID</span>
+- ## <span style="font-size:larger;">Deletar Produto por ID</span>
   - **URL:** [https://nunes-sports-axl7.onrender.com/products/deletar/:productId](https://nunes-sports-axl7.onrender.com/products/deletar/:productId)
   - **Método:** DELETE 
   - **URL Params:**
