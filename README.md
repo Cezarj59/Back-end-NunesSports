@@ -42,7 +42,7 @@ Este projeto consiste em uma API para a Nunes Sports, que oferece operações de
    npm start
    # ou
    node src/server.js
-
+   ```
 
 
 4. Utilize os seguintes endpoints para realizar operações na API:
