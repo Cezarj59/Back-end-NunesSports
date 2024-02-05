@@ -200,7 +200,7 @@ A seguir estão os endpoints disponíveis do projeto hospedado:
     ```
           
       - **Erros:**
-        - - Internal Server Error
+        - Internal Server Error
 
 - ## <span style="font-size:larger;">Busca de Produto por ID</span>  
   - **URL:** [https://nunes-sports-axl7.onrender.com/products/buscar/:productId](https://nunes-sports-axl7.onrender.com/products/buscar/:productId)
