@@ -86,7 +86,7 @@ Você pode utilizar o cURL para testar os endpoints diretamente do terminal ou l
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"nome":"Nome do Produto", "codigo":"12345", "descricao":"Descrição do Produto", "preco":99.99}' http://localhost:3001/products/cadastrar
 ```
-### Atualização de Produto (Exemplo com ID "productId")
+### Atualização de Produto (Substitua 'productId' pelo ID do Produto)
 ```bash
 curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Novo Nome", "codigo":"54321", "descricao":"Nova Descrição", "preco":129.99}' http://localhost:3001/products/atualizar/:productId
 
@@ -95,11 +95,11 @@ curl -X PUT -H "Content-Type: application/json" -d '{"nome":"Novo Nome", "codigo
 ```bash
 curl -X GET http://localhost:3001/products/listar
 ```
-### Busca de Produto por ID (Substitua 'productId' pelo ID correto)
+### Busca de Produto por ID (Substitua 'productId' pelo ID do Produto)
 ```bash
 curl -X GET http://localhost:3001/products/buscar/:productId
 ```
-### Busca de Produto por ID (Substitua 'productId' pelo ID correto)
+### Busca de Produto por ID (Substitua 'productId' pelo ID do Produto)
 ```bash
 curl -X DELETE http://localhost:3001/products/deletar/:productId
 ```
