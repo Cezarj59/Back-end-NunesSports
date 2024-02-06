@@ -268,13 +268,19 @@ O projeto utiliza o npm (Node Package Manager) para:
 - **Gerenciamento de Dependências:** Todas as dependências do projeto são definidas no arquivo `package.json` e podem ser instaladas usando o comando:
   ```bash
   npm install
-  
+  ```
 ## Padronização de Código
 
 - **ESLint:** O projeto utiliza o ESLint para manter a consistência no estilo do código. Os padrões de estilo são definidos no arquivo `.eslintrc.json` e a verificação pode ser feita com o comando:
   ```bash
   npm run lint
-  
+  ```
+
+## Link Front-end Nunes Sports:
+
+### [Nunes Sports](https://cezarj59.github.io/Front-end-NunesSports/)
+
+
 
 
 ## Languages and Tools
